@@ -1,0 +1,110 @@
+<div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
+  <div class="w-full max-w-md">
+    <div class="auth-card rounded-2xl border p-8 shadow-sm">
+      <div class="mb-8 flex flex-col items-center gap-1 text-center">
+        <span class="pi pi-prime text-primary text-3xl"></span>
+        <h1 class="mt-2 text-2xl font-bold">
+          {{ isLogin() ? 'Welcome back' : 'Create an account' }}
+        </h1>
+        <p class="text-sm text-muted-color">
+          {{ isLogin() ? 'Sign in to your Kohtly account' : 'Start your journey with Kohtly' }}
+        </p>
+      </div>
+
+      <!-- Mode tabs -->
+      <div class="auth-tabs mb-6 flex rounded-lg border p-1">
+        <button
+          class="flex-1 rounded-md py-2 text-sm font-medium transition-colors"
+          [class.auth-tab-active]="isLogin()"
+          (click)="switchMode('login')"
+        >
+          Login
+        </button>
+        <button
+          class="flex-1 rounded-md py-2 text-sm font-medium transition-colors"
+          [class.auth-tab-active]="!isLogin()"
+          (click)="switchMode('register')"
+        >
+          Register
+        </button>
+      </div>
+
+      <!-- Login form -->
+      @if (isLogin()) {
+        <form class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label for="login-email" class="text-sm font-medium">Email</label>
+            <input
+              pInputText
+              id="login-email"
+              type="email"
+              placeholder="you@example.com"
+              class="w-full"
+            />
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="login-password" class="text-sm font-medium">Password</label>
+            <p-password
+              inputId="login-password"
+              placeholder="••••••••"
+              [feedback]="false"
+              [toggleMask]="true"
+              styleClass="w-full"
+              inputStyleClass="w-full"
+            ></p-password>
+          </div>
+          <p-button
+            type="submit"
+            label="Sign in"
+            icon="pi pi-sign-in"
+            [fluid]="true"
+            class="mt-2"
+          ></p-button>
+        </form>
+      }
+
+      <!-- Register form -->
+      @if (!isLogin()) {
+        <form class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label for="register-name" class="text-sm font-medium">Full name</label>
+            <input
+              pInputText
+              id="register-name"
+              type="text"
+              placeholder="John Doe"
+              class="w-full"
+            />
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="register-email" class="text-sm font-medium">Email</label>
+            <input
+              pInputText
+              id="register-email"
+              type="email"
+              placeholder="you@example.com"
+              class="w-full"
+            />
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="register-password" class="text-sm font-medium">Password</label>
+            <p-password
+              inputId="register-password"
+              placeholder="••••••••"
+              [toggleMask]="true"
+              styleClass="w-full"
+              inputStyleClass="w-full"
+            ></p-password>
+          </div>
+          <p-button
+            type="submit"
+            label="Create account"
+            icon="pi pi-user-plus"
+            [fluid]="true"
+            class="mt-2"
+          ></p-button>
+        </form>
+      }
+    </div>
+  </div>
+</div>

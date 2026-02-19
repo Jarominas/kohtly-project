@@ -4,7 +4,7 @@
     aria-label="Main navigation"
   >
     <a
-      href="#home"
+      routerLink="/"
       class="brand-text flex items-center gap-2 text-lg font-semibold"
       (click)="closeMenu()"
     >
@@ -15,7 +15,9 @@
     <div class="hidden items-center gap-1 md:flex">
       @for (link of links; track link.href) {
         <a
-          [href]="link.href"
+          [routerLink]="link.href"
+          routerLinkActive="nav-link-active"
+          [routerLinkActiveOptions]="{ exact: link.href === '/' }"
           class="nav-link rounded-md px-3 py-2 text-sm font-medium transition-colors"
         >
           {{ link.label }}
@@ -33,7 +35,7 @@
           ariaLabel="Toggle theme"
         ></p-toggleswitch>
       </div>
-      <p-button label="Login" icon="pi pi-user" severity="contrast"></p-button>
+      <p-button label="Login" icon="pi pi-user" severity="contrast" routerLink="/auth"></p-button>
     </div>
 
     <div class="flex items-center gap-2 md:hidden">
@@ -58,7 +60,9 @@
       <div class="flex flex-col gap-1">
         @for (link of links; track link.href) {
           <a
-            [href]="link.href"
+            [routerLink]="link.href"
+            routerLinkActive="nav-link-active"
+            [routerLinkActiveOptions]="{ exact: link.href === '/' }"
             class="nav-link rounded-md px-3 py-2 text-sm font-medium transition-colors"
             (click)="closeMenu()"
           >
@@ -67,7 +71,13 @@
         }
       </div>
       <div class="mobile-login mt-3 border-t pt-3">
-        <p-button label="Login" icon="pi pi-user" [fluid]="true" severity="contrast"></p-button>
+        <p-button
+          label="Login"
+          icon="pi pi-user"
+          [fluid]="true"
+          severity="contrast"
+          routerLink="/auth"
+        ></p-button>
       </div>
     </div>
   }

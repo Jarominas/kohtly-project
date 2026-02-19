@@ -9,18 +9,15 @@ import {
 } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-
-interface HeaderLink {
-  readonly label: string;
-  readonly href: string;
-}
+import { HEADER_LINKS } from './header.constants';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule, ToggleSwitchModule, FormsModule],
+  imports: [RouterLink, RouterLinkActive, ButtonModule, ToggleSwitchModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,11 +26,7 @@ export class HeaderComponent {
   private readonly document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
 
-  protected readonly links: HeaderLink[] = [
-    { label: 'Home', href: '#home' },
-    { label: 'Features', href: '#features' },
-    { label: 'Pricing', href: '#pricing' },
-  ];
+  protected readonly links = HEADER_LINKS;
 
   protected readonly isMenuOpen = signal(false);
   protected readonly isDarkMode = signal(false);
