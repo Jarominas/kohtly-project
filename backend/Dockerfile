@@ -17,4 +17,4 @@ COPY --from=builder /app/backend/package.json ./
 COPY --from=builder /app/backend/prisma ./prisma
 COPY --from=builder /app/shared ./shared
 
-CMD ["npm", "run", "start:prod"]
+CMD ["sh", "-c", "npm run prisma:migrate:deploy && npm run start:prod"]

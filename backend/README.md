@@ -31,6 +31,26 @@
 $ npm install
 ```
 
+## Prisma setup
+
+Use `DATABASE_URL` in `.env` and apply the schema to your local database:
+
+```bash
+$ npm run prisma:migrate:dev
+```
+
+Generate the Prisma client after schema changes:
+
+```bash
+$ npm run prisma:generate
+```
+
+Open Prisma Studio:
+
+```bash
+$ npm run prisma:studio
+```
+
 ## Compile and run the project
 
 ```bash

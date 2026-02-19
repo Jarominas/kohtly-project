@@ -1,17 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { UserDTO } from '@app/shared';
+import { PrismaService } from './prisma/prisma.service';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async getHello(): Promise<string> {
+    const dbUser = await this.prisma.user.upsert({
+      where: { email: 'user@mail.com' },
+      update: { name: 'John Doe', role: 'admin' },
+      create: {
+        name: 'John Doe',
+        email: 'user@mail.com',
+        role: 'admin',
+      },
+    });
+
     const user: UserDTO = {
-      id: 1,
-      name: 'John Doe',
-      email: 'user@mail.com',
-      role: 'admin',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      id: dbUser.id,
+      name: dbUser.name,
+      email: dbUser.email,
+      role: dbUser.role,
+      createdAt: dbUser.createdAt,
+      updatedAt: dbUser.updatedAt,
     };
+
     return JSON.stringify({ user });
   }
 }
