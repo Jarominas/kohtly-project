@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+.header-shell {
+  border-color: var(--p-surface-200);
+  background-color: color-mix(in srgb, var(--p-surface-0) 90%, transparent);
+}
+
+.brand-text,
+.theme-text,
+.nav-link {
+  color: var(--p-text-color);
+}
+
+.nav-link:hover {
+  background-color: var(--p-surface-100);
+}
+
+.mobile-panel,
+.mobile-login {
+  border-color: var(--p-surface-200);
+  background-color: var(--p-surface-0);
+}

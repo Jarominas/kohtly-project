@@ -1,0 +1,36 @@
+<div class="reactive-container">
+  <h1>Reactive Data List</h1>
+
+  <div class="filter-info">
+    <p>Current Filter ID: {{ filterId() }}</p>
+    <p class="hint">
+      Changing the input [filterId] will automatically reload data.
+    </p>
+  </div>
+
+  <button (click)="refresh()" [disabled]="loading()">
+    @if (loading()) {
+      Refreshing...
+    } @else {
+      Manual Refresh
+    }
+  </button>
+
+  @if (error()) {
+    <div class="error-message">
+      {{ error() }}
+    </div>
+  }
+
+  @if (!loading() && !error()) {
+    <ul class="data-list">
+      @for (item of items(); track item.id) {
+        <li>
+          <strong>{{ item.name }}</strong>
+        </li>
+      } @empty {
+        <li>No items found.</li>
+      }
+    </ul>
+  }
+</div>

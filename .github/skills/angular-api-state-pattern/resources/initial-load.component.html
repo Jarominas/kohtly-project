@@ -1,0 +1,29 @@
+<div class="feature-container">
+  <h1>Data List ({{ itemCount() }})</h1>
+
+  <button (click)="refresh()" [disabled]="loading()">
+    @if (loading()) {
+      Loading...
+    } @else {
+      Refresh Data
+    }
+  </button>
+
+  @if (error()) {
+    <div class="error-message">
+      {{ error() }}
+    </div>
+  }
+
+  @if (!loading() && !error()) {
+    <ul class="data-list">
+      @for (item of items(); track item.id) {
+        <li>
+          <strong>{{ item.name }}</strong> (ID: {{ item.id }})
+        </li>
+      } @empty {
+        <li>No items found.</li>
+      }
+    </ul>
+  }
+</div>

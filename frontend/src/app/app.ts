@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [ButtonModule],
+  imports: [HeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
-  protected readonly title = signal('frontend');
-}
+export class App {}
