@@ -1,0 +1,9 @@
+{
+  "name": "kohtly-project",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ]
+}
