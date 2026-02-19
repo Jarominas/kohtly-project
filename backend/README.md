@@ -51,6 +51,14 @@ Open Prisma Studio:
 $ npm run prisma:studio
 ```
 
+## Railway deployment checklist
+
+- Deploy this service using Dockerfile path `backend/Dockerfile`
+- Attach a PostgreSQL service and set `DATABASE_URL`
+- Set `PORT` from Railway variables (default fallback is `3000`)
+- App startup already runs `prisma migrate deploy` before Nest starts
+- Health endpoint is available at `GET /health`
+
 ## Compile and run the project
 
 ```bash

@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { UserDTO } from '@app/shared';
+import type { UserDTO } from '@app/shared';
 import { PrismaService } from './prisma/prisma.service';
 
 @Injectable()
 export class AppService {
   constructor(private readonly prisma: PrismaService) {}
+
+  getHealth(): { status: 'ok' } {
+    return { status: 'ok' };
+  }
 
   async getHello(): Promise<string> {
     const dbUser = await this.prisma.user.upsert({

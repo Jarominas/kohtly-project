@@ -36,6 +36,13 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Railway deployment checklist
+
+- Deploy this service using Dockerfile path `frontend/Dockerfile`
+- Set `PORT` in Railway variables (default fallback is `4000`)
+- Runtime entrypoint is `dist/frontend/server/server.mjs`
+- Keep backend URL configured via environment variables used by your frontend server
+
 ## Running unit tests
 
 To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
