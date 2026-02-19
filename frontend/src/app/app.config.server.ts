@@ -5,10 +5,7 @@ import { appConfig } from './app.config';
 import { serverRoutes } from './app.routes.server';
 
 const serverConfig: ApplicationConfig = {
-  providers: [
-    provideServerRendering(withRoutes(serverRoutes)),
-    provideNoopAnimations()
-  ]
+  providers: [provideServerRendering(withRoutes(serverRoutes)), provideNoopAnimations()],
 };
 
 export const config = mergeApplicationConfig(appConfig, serverConfig);
