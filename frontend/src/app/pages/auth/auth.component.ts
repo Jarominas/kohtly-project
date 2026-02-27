@@ -1,24 +1,26 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-
-type AuthMode = 'login' | 'register';
+import { SocialButtonComponent } from '../../components/buttons/social-button/social-button.component';
 
 @Component({
   selector: 'app-auth',
-  standalone: true,
-  imports: [FormsModule, ButtonModule, InputTextModule, PasswordModule],
+  imports: [
+    FormsModule,
+    ButtonModule,
+    InputTextModule,
+    PasswordModule,
+    CheckboxModule,
+    DividerModule,
+    SocialButtonComponent,
+  ],
   templateUrl: './auth.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent {
-  protected readonly mode = signal<AuthMode>('login');
-
-  protected readonly isLogin = () => this.mode() === 'login';
-
-  protected switchMode(mode: AuthMode): void {
-    this.mode.set(mode);
-  }
+  protected readonly rememberMe = signal<boolean>(true);
 }

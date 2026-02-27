@@ -1,110 +1,128 @@
 <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
   <div class="w-full max-w-md">
-    <div class="auth-card rounded-2xl border p-8 shadow-sm">
-      <div class="mb-8 flex flex-col items-center gap-1 text-center">
-        <span class="pi pi-prime text-primary text-3xl"></span>
-        <h1 class="mt-2 text-2xl font-bold">
-          {{ isLogin() ? 'Welcome back' : 'Create an account' }}
-        </h1>
-        <p class="text-sm text-muted-color">
-          {{ isLogin() ? 'Sign in to your Kohtly account' : 'Start your journey with Kohtly' }}
-        </p>
+    <!-- Modal Card -->
+    <div
+      class="rounded-[24px] bg-surface-0 dark:bg-surface-900 shadow-xl border border-surface-200 dark:border-surface-800 p-8 sm:p-10"
+    >
+      <!-- Logo -->
+      <div class="mb-6 flex justify-center">
+        <div
+          class="flex h-16 w-16 items-center justify-center rounded-full border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-800 shadow-sm"
+        >
+          <svg
+            class="h-8 w-8 text-surface-900 dark:text-surface-0"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+              opacity="0.2"
+            />
+            <path
+              d="M7 11.5c1.5 0 2.5 1 4 1s2.5-1 4-1 2.5 1 4 1v-1.5c-1.5 0-2.5-1-4-1s-2.5 1-4 1-2.5-1-4-1-2.5 1-4 1v1.5z"
+            />
+            <path
+              d="M7 15.5c1.5 0 2.5 1 4 1s2.5-1 4-1 2.5 1 4 1v-1.5c-1.5 0-2.5-1-4-1s-2.5 1-4 1-2.5-1-4-1-2.5 1-4 1v1.5z"
+            />
+            <path
+              d="M7 7.5c1.5 0 2.5 1 4 1s2.5-1 4-1 2.5 1 4 1V7c-1.5 0-2.5-1-4-1s-2.5 1-4 1-2.5-1-4-1-2.5 1-4 1v1.5z"
+            />
+          </svg>
+        </div>
       </div>
 
-      <!-- Mode tabs -->
-      <div class="auth-tabs mb-6 flex rounded-lg border p-1">
-        <button
-          class="flex-1 rounded-md py-2 text-sm font-medium transition-colors"
-          [class.auth-tab-active]="isLogin()"
-          (click)="switchMode('login')"
-        >
-          Login
-        </button>
-        <button
-          class="flex-1 rounded-md py-2 text-sm font-medium transition-colors"
-          [class.auth-tab-active]="!isLogin()"
-          (click)="switchMode('register')"
-        >
-          Register
-        </button>
+      <!-- Welcome Heading -->
+      <h1
+        class="mb-8 text-center text-2xl font-semibold text-surface-900 dark:text-surface-0 tracking-tight"
+      >
+        Welcome Back
+      </h1>
+
+      <!-- Social Login Buttons -->
+      <div class="mb-6 flex gap-3">
+        <app-social-button icon="pi pi-google"></app-social-button>
+        <app-social-button icon="pi pi-facebook"></app-social-button>
+        <app-social-button icon="pi pi-apple"></app-social-button>
       </div>
 
-      <!-- Login form -->
-      @if (isLogin()) {
-        <form class="flex flex-col gap-4">
-          <div class="flex flex-col gap-1.5">
-            <label for="login-email" class="text-sm font-medium">Email</label>
-            <input
-              pInputText
-              id="login-email"
-              type="email"
-              placeholder="you@example.com"
-              class="w-full"
-            />
-          </div>
-          <div class="flex flex-col gap-1.5">
-            <label for="login-password" class="text-sm font-medium">Password</label>
-            <p-password
-              inputId="login-password"
-              placeholder="••••••••"
-              [feedback]="false"
-              [toggleMask]="true"
-              styleClass="w-full"
-              inputStyleClass="w-full"
-            ></p-password>
-          </div>
-          <p-button
-            type="submit"
-            label="Sign in"
-            icon="pi pi-sign-in"
-            [fluid]="true"
-            class="mt-2"
-          ></p-button>
-        </form>
-      }
+      <!-- Divider -->
+      <div class="mb-6 flex items-center">
+        <div class="flex-grow border-t border-surface-200 dark:border-surface-700"></div>
+        <span class="mx-4 text-sm font-medium text-surface-500 dark:text-surface-400">or</span>
+        <div class="flex-grow border-t border-surface-200 dark:border-surface-700"></div>
+      </div>
 
-      <!-- Register form -->
-      @if (!isLogin()) {
-        <form class="flex flex-col gap-4">
-          <div class="flex flex-col gap-1.5">
-            <label for="register-name" class="text-sm font-medium">Full name</label>
-            <input
-              pInputText
-              id="register-name"
-              type="text"
-              placeholder="John Doe"
-              class="w-full"
-            />
+      <!-- Form -->
+      <form class="flex flex-col gap-5">
+        <!-- Email Input -->
+        <div class="flex flex-col gap-2">
+          <label for="email" class="text-sm font-medium text-surface-900 dark:text-surface-0"
+            >Email Address</label
+          >
+          <input
+            pInputText
+            id="email"
+            type="email"
+            placeholder="Email Address"
+            class="w-full rounded-lg border border-surface-300 bg-surface-0 px-4 py-3 text-surface-900 dark:border-surface-700 dark:bg-surface-900 dark:text-surface-0 focus:border-[#22c55e] focus:ring focus:ring-[#22c55e]/20"
+          />
+        </div>
+
+        <!-- Password Input -->
+        <div class="flex flex-col gap-2">
+          <label for="password" class="text-sm font-medium text-surface-900 dark:text-surface-0"
+            >Password</label
+          >
+          <p-password
+            inputId="password"
+            placeholder="Password"
+            [feedback]="false"
+            [toggleMask]="true"
+            styleClass="w-full"
+            inputStyleClass="w-full rounded-lg border border-surface-300 bg-surface-0 px-4 py-3 text-surface-900 dark:border-surface-700 dark:bg-surface-900 dark:text-surface-0 focus:border-[#22c55e] focus:ring focus:ring-[#22c55e]/20"
+          ></p-password>
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="flex items-center justify-between mt-1">
+          <div class="flex items-center" style="--p-primary-color: #22c55e">
+            <p-checkbox
+              inputId="rememberMe"
+              [binary]="true"
+              [ngModel]="rememberMe()"
+              (ngModelChange)="rememberMe.set($event)"
+              name="rememberMe"
+              styleClass="mr-2"
+            ></p-checkbox>
+            <label
+              for="rememberMe"
+              class="cursor-pointer text-sm text-surface-900 dark:text-surface-0"
+              >Remember me</label
+            >
           </div>
-          <div class="flex flex-col gap-1.5">
-            <label for="register-email" class="text-sm font-medium">Email</label>
-            <input
-              pInputText
-              id="register-email"
-              type="email"
-              placeholder="you@example.com"
-              class="w-full"
-            />
-          </div>
-          <div class="flex flex-col gap-1.5">
-            <label for="register-password" class="text-sm font-medium">Password</label>
-            <p-password
-              inputId="register-password"
-              placeholder="••••••••"
-              [toggleMask]="true"
-              styleClass="w-full"
-              inputStyleClass="w-full"
-            ></p-password>
-          </div>
-          <p-button
-            type="submit"
-            label="Create account"
-            icon="pi pi-user-plus"
-            [fluid]="true"
-            class="mt-2"
-          ></p-button>
-        </form>
-      }
+          <a
+            href="#"
+            class="text-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-surface-100 transition-colors"
+          >
+            Forgot your password?
+          </a>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="mt-4 w-full rounded-lg bg-[#22c55e] px-4 py-3.5 text-base font-semibold text-white shadow hover:bg-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#22c55e] focus:ring-offset-2 dark:focus:ring-offset-surface-900 transition-all active:scale-[0.98]"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="mt-8 text-center text-sm font-medium text-surface-900 dark:text-surface-0">
+        Don't have an account?
+        <a href="#" class="text-[#22c55e] hover:text-[#16a34a] transition-colors">Create today!</a>
+      </div>
     </div>
   </div>
 </div>

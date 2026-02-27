@@ -23,6 +23,37 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./layouts/dashboard-layout/dashboard-layout.component').then(
+        (m) => m.DashboardLayoutComponent,
+      ),
+    children: [
+      {
+        path: '',
+        redirectTo: 'main',
+        pathMatch: 'full',
+      },
+      {
+        path: 'main',
+        loadComponent: () =>
+          import('./pages/dashboard/main/main.component').then((m) => m.MainComponent),
+      },
+      {
+        path: 'statistics',
+        loadComponent: () =>
+          import('./pages/dashboard/statistics/statistics.component').then(
+            (m) => m.StatisticsComponent,
+          ),
+      },
+      {
+        path: 'calendar',
+        loadComponent: () =>
+          import('./pages/dashboard/calendar/calendar.component').then((m) => m.CalendarComponent),
+      },
+    ],
+  },
+  {
     path: 'auth',
     loadComponent: () =>
       import('./layouts/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
