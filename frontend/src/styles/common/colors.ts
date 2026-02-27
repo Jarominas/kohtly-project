@@ -15,6 +15,8 @@ export const colors = {
   colorScheme: {
     light: {
       surface: {
+        background: '#ffffff',
+        border: '#E5E7EB',
         0: '#ffffff',
         50: '{zinc.50}',
         100: '{zinc.100}',
@@ -31,7 +33,9 @@ export const colors = {
     },
     dark: {
       surface: {
-        0: '#192b69ff',
+        background: '#1F2937',
+        border: '#374151',
+        0: '{slate.0}',
         50: '{slate.50}',
         100: '{slate.100}',
         200: '{slate.200}',

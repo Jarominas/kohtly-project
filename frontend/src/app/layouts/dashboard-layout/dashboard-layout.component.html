@@ -1,12 +1,16 @@
-<div class="min-h-screen flex text-surface-0 bg-surface-900">
-  <!-- Sidebar -->
-  <div class="w-64 flex-shrink-0 flex flex-col border-r border-surface-700 bg-surface-800">
+<div
+  class="min-h-screen flex text-[var(--p-text-color)] bg-[var(--p-surface-50)] dark:bg-[var(--p-surface-900)]"
+>
+  <!-- Reusable Sidebar Template -->
+  <ng-template #sidebarContent>
     <!-- Brand -->
-    <div class="h-16 flex items-center px-6 border-b border-surface-700">
-      <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3 font-bold">
+    <div class="h-16 flex items-center px-6 border-b border-[var(--p-surface-border)]">
+      <div
+        class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3 font-bold text-white"
+      >
         K
       </div>
-      <span class="text-xl font-semibold tracking-wide">Kohtly</span>
+      <span class="text-xl font-semibold tracking-wide text-[var(--p-text-color)]">Kohtly</span>
     </div>
 
     <!-- Navigation -->
@@ -16,9 +20,9 @@
           <li>
             <a
               routerLink="/dashboard/main"
-              routerLinkActive="bg-surface-700 text-primary-400"
+              routerLinkActive="bg-[var(--p-surface-200)] dark:bg-[var(--p-surface-800)] text-primary font-semibold"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="flex items-center px-2 py-2.5 rounded-md hover:bg-surface-700 hover:text-surface-0 transition-colors text-surface-300"
+              class="flex items-center px-2 py-2.5 rounded-md hover:bg-[var(--p-surface-100)] dark:hover:bg-[var(--p-surface-800)] text-[var(--p-text-muted-color)] transition-colors"
             >
               <i class="pi pi-home mr-3 text-lg"></i>
               <span>Home</span>
@@ -27,8 +31,8 @@
           <li>
             <a
               routerLink="/dashboard/calendar"
-              routerLinkActive="bg-surface-700 text-primary-400"
-              class="flex items-center px-2 py-2.5 rounded-md hover:bg-surface-700 hover:text-surface-0 transition-colors text-surface-300"
+              routerLinkActive="bg-[var(--p-surface-200)] dark:bg-[var(--p-surface-800)] text-primary font-semibold"
+              class="flex items-center px-2 py-2.5 rounded-md hover:bg-[var(--p-surface-100)] dark:hover:bg-[var(--p-surface-800)] text-[var(--p-text-muted-color)] transition-colors"
             >
               <i class="pi pi-calendar mr-3 text-lg"></i>
               <span>Calendar</span>
@@ -37,8 +41,8 @@
           <li>
             <a
               routerLink="/dashboard/statistics"
-              routerLinkActive="bg-surface-700 text-primary-400"
-              class="flex items-center px-2 py-2.5 rounded-md hover:bg-surface-700 hover:text-surface-0 transition-colors text-surface-300"
+              routerLinkActive="bg-[var(--p-surface-200)] dark:bg-[var(--p-surface-800)] text-primary font-semibold"
+              class="flex items-center px-2 py-2.5 rounded-md hover:bg-[var(--p-surface-100)] dark:hover:bg-[var(--p-surface-800)] text-[var(--p-text-muted-color)] transition-colors"
             >
               <i class="pi pi-chart-bar mr-3 text-lg"></i>
               <span>Statistics</span>
@@ -47,27 +51,58 @@
         </ul>
       </div>
     </div>
+  </ng-template>
+
+  <!-- Desktop Persistent Sidebar -->
+  <div
+    class="hidden md:flex w-64 flex-shrink-0 flex-col border-r border-[var(--p-surface-border)] bg-[var(--p-surface-background)]"
+  >
+    <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
   </div>
 
+  <!-- Mobile Drawer Sidebar -->
+  <p-drawer
+    [(visible)]="isSidebarVisible"
+    [styleClass]="'w-64 !p-0 bg-[var(--p-surface-background)] border-r border-[var(--p-surface-border)]'"
+    [showCloseIcon]="false"
+  >
+    <div class="flex flex-col h-full">
+      <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
+    </div>
+  </p-drawer>
+
   <!-- Main Content -->
-  <div class="flex-1 flex flex-col min-w-0 bg-[#343a46]">
+  <div class="flex-1 flex flex-col min-w-0 bg-[var(--p-surface-background)]">
     <!-- Topbar -->
-    <div class="h-16 flex items-center justify-end px-6 border-b border-surface-700 bg-surface-800">
+    <div
+      class="h-16 flex items-center justify-between md:justify-end px-6 border-b border-[var(--p-surface-border)] bg-[var(--p-surface-background)]"
+    >
+      <!-- Mobile Menu Button -->
+      <p-button
+        icon="pi pi-bars"
+        (onClick)="toggleSidebar()"
+        [text]="true"
+        severity="secondary"
+        styleClass="md:!hidden"
+      ></p-button>
+
+      <!-- Right Actions -->
       <div class="flex items-center gap-6">
+        <app-theme-switcher [showLabel]="false" inputId="dashboard-theme"></app-theme-switcher>
         <i
-          class="pi pi-bell text-surface-400 hover:text-surface-0 transition-colors cursor-pointer text-lg"
+          class="pi pi-bell text-[var(--p-text-muted-color)] hover:text-[var(--p-text-color)] transition-colors cursor-pointer text-lg"
         ></i>
         <p-avatar
           image="https://primefaces.org/cdn/primeng/images/avatar/amyelsner.png"
           shape="circle"
-          styleClass="w-8 h-8 cursor-pointer ring-2 ring-surface-700"
+          styleClass="w-8 h-8 cursor-pointer ring-2 ring-[var(--p-surface-200)] dark:ring-[var(--p-surface-700)]"
         ></p-avatar>
       </div>
     </div>
 
     <!-- Content Area -->
     <div class="flex-1 p-6 overflow-y-auto">
-      <div class="border-2 border-dashed border-surface-600 rounded-xl h-full p-4">
+      <div class="border-2 border-dashed border-[var(--p-surface-border)] rounded-xl h-full p-4">
         <router-outlet></router-outlet>
       </div>
     </div>

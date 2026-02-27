@@ -1,5 +1,4 @@
 export const tokens = {
-  /* You can add global semantic tokens here */
   focusRing: {
     color: '{primary.color}',
   },

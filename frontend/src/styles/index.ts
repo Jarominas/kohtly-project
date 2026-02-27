@@ -3,7 +3,7 @@ import Aura from '@primeuix/themes/aura';
 import { colors } from './common/colors';
 import { tokens } from './common/tokens';
 import { typography } from './common/typography';
-import { button } from './components/button';
+import { button, card } from './components';
 
 export const BasicDesignPreset = definePreset(Aura, {
   semantic: {
@@ -13,6 +13,7 @@ export const BasicDesignPreset = definePreset(Aura, {
   },
   components: {
     button,
+    card,
   },
   extend: {
     typography,
